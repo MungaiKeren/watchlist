@@ -2,25 +2,26 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from config import config_options
 
-bootsrap = Bootstrap()
+bootstrap = Bootstrap()
 
 def create_app(config_name):
+
     app = Flask(__name__)
 
     # Creating the app configurations
     app.config.from_object(config_options[config_name])
 
     # initializing flask extensions
-    bootsrap.init_app(app)
+    bootstrap.init_app(app)
 
     # Registering the blueprint
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
-    # setting configuration
-    from .request import configure_requests
-    configure_requests(app)
+    # # setting configuration
+    # from .request import configure_requests
+    # configure_requests(app)
 
-    # will add views and forms
+    # # will add views and forms
 
     return app
